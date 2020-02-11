@@ -39,12 +39,11 @@ class Eye {
   }
   
   void draw() {
+    angle = atan2(mouseY - pos.y, mouseX - pos.x);
+    pushMatrix();
+    noStroke();
     fill(sclera);
     ellipse(pos.x, pos.y, size.x, size.y);
-    
-    angle = atan2(mouseY - pos.y, mouseX - pos.x);
-    
-    pushMatrix();
     translate(pos.x, pos.y);
     rotate(angle);
     fill(retina);

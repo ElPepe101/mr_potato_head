@@ -8,6 +8,7 @@ class Potato {
   private HashMap<String, Nose> noses = new HashMap<String, Nose>();
   private HashMap<String, Hat> hats = new HashMap<String, Hat>();
   private HashMap<String, Feet> feets = new HashMap<String, Feet>();
+  private HashMap<String, Arm> arms = new HashMap<String, Arm>();
 
   private HashMap<String, PVector> holes = new HashMap<String, PVector>(); 
   
@@ -47,18 +48,37 @@ class Potato {
     feets.put(hole, feet);
   }
   
+  void addToHole(String hole, Arm arm) {
+    arms.put(hole, arm);
+  }
+  
   void draw() {
+    pushMatrix();
     noStroke();
     fill(200, 134, 67);
     ellipse(pos.x, pos.y, size.x, size.y);
     ellipse(pos.x, pos.y + (size.y / 4), size.x * 1.15, size.x * 1.3);
-    
-    pushMatrix();
     fill(205, 139, 72);
     rotate(radians(20));
     arc(pos.x + size.x * .9, pos.y * .97, size.x * .3, size.y * .6, radians(-90), radians(120));
     popMatrix();
 
+    attatchToHoles();
+  }
+  
+  void setPosition() {
+    if (keyCode == LEFT) {
+      pos.add(-speed, 0);
+    }
+    
+    if (keyCode == RIGHT) {
+      pos.add(speed, 0);
+    }
+    
+    setHoles();
+  }
+  
+  private void attatchToHoles() {
     for (Map.Entry<String, PVector> hole : holes.entrySet()) {
       String ref = hole.getKey();
       if (eyes.containsKey(ref)) {
@@ -88,19 +108,14 @@ class Potato {
         feet.setPosition(pos);
         feet.draw();
       }
+      
+      if (arms.containsKey(ref)) {
+        PVector pos = hole.getValue();
+        Arm arm = arms.get(ref);
+        arm.setPosition(pos);
+        arm.draw();
+      }
     }
-  }
-  
-  void setPosition() {
-    if (keyCode == LEFT) {
-      pos.add(-speed, 0);
-    }
-    
-    if (keyCode == RIGHT) {
-      pos.add(speed, 0);
-    }
-    
-    setHoles();
   }
   
   private void setHoles() {
