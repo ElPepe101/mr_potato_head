@@ -10,8 +10,8 @@ void setup() {
   mr_potato.addToHole("right eye", new Eye());
   mr_potato.addToHole("left eye", new Eye());
   mr_potato.addToHole("feet", new Feet());
+  mr_potato.addToHole("mouth", new Teeth());
   mr_potato.addToHole("nose", new Nose());
-  //mr_potato.addToHole("mouth", new Eye(45, 80));
   mr_potato.addToHole("head", new Hat());
 }
 

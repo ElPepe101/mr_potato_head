@@ -39,6 +39,7 @@ class Eye {
   }
   
   void draw() {
+    println("eye");
     angle = atan2(mouseY - pos.y, mouseX - pos.x);
     pushMatrix();
     noStroke();

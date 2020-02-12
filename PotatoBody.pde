@@ -5,6 +5,7 @@ class Potato {
   private PVector size;
   
   private HashMap<String, Eye> eyes = new HashMap<String, Eye>();
+  private HashMap<String, Teeth> teeths = new HashMap<String, Teeth>();
   private HashMap<String, Nose> noses = new HashMap<String, Nose>();
   private HashMap<String, Hat> hats = new HashMap<String, Hat>();
   private HashMap<String, Feet> feets = new HashMap<String, Feet>();
@@ -36,10 +37,6 @@ class Potato {
     eyes.put(hole, eye);
   }
   
-  void addToHole(String hole, Nose nose) {
-    noses.put(hole, nose);
-  }
-  
   void addToHole(String hole, Hat hat) {
     hats.put(hole, hat);
   }
@@ -50,6 +47,14 @@ class Potato {
   
   void addToHole(String hole, Arm arm) {
     arms.put(hole, arm);
+  }
+  
+  void addToHole(String hole, Teeth teeth) {
+    teeths.put(hole, teeth);
+  }
+  
+  void addToHole(String hole, Nose nose) {
+    noses.put(hole, nose);
   }
   
   void draw() {
@@ -81,11 +86,21 @@ class Potato {
   private void attatchToHoles() {
     for (Map.Entry<String, PVector> hole : holes.entrySet()) {
       String ref = hole.getKey();
+      
+      println("ref: " + ref);
+
       if (eyes.containsKey(ref)) {
         PVector pos = hole.getValue();
         Eye eye = eyes.get(ref);
         eye.setPosition(pos);
         eye.draw();
+      }
+      
+      if (teeths.containsKey(ref)) {
+        PVector pos = hole.getValue();
+        Teeth teeth = teeths.get(ref);
+        teeth.setPosition(pos);
+        teeth.draw();
       }
       
       if (noses.containsKey(ref)) {
@@ -113,20 +128,21 @@ class Potato {
         PVector pos = hole.getValue();
         Arm arm = arms.get(ref);
         arm.setPosition(pos);
-        arm.draw();
+        arm.draw(0);
       }
     }
   }
   
   private void setHoles() {
+    holes.put("feet", new PVector(pos.x, pos.y + size.y * .65));
+    holes.put("mouth", new PVector(pos.x, pos.y * 1.1));
+
     holes.put("left eye", new PVector(pos.x - size.x / 6, pos.y - size.y / 6));
     holes.put("right eye", new PVector(pos.x + size.x / 6, pos.y - size.y / 6));
 
     holes.put("left arm", new PVector(pos.x - size.x / 2, pos.y * 1.1));
     holes.put("right arm", new PVector(pos.x + size.x / 2, pos.y * 1.1));
     
-    holes.put("feet", new PVector(pos.x, pos.y + size.y * .65));
-    holes.put("mouth", new PVector(pos.x, pos.y * 1.1));
     holes.put("nose", new PVector(pos.x, pos.y));
     holes.put("head", new PVector(pos.x, pos.y - size.y / 2));
   }
