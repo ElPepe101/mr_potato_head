@@ -10,6 +10,7 @@ class Potato {
   private HashMap<String, Hat> hats = new HashMap<String, Hat>();
   private HashMap<String, Feet> feets = new HashMap<String, Feet>();
   private HashMap<String, Arm> arms = new HashMap<String, Arm>();
+  private HashMap<String, Accessory> accessories = new HashMap<String, Accessory>();
 
   private HashMap<String, PVector> holes = new HashMap<String, PVector>(); 
   
@@ -57,6 +58,10 @@ class Potato {
     noses.put(hole, nose);
   }
   
+  void addToHole(String hole, Accessory accessory) {
+    accessories.put(hole, accessory);
+  }
+  
   void draw() {
     pushMatrix();
     noStroke();
@@ -86,8 +91,6 @@ class Potato {
   private void attatchToHoles() {
     for (Map.Entry<String, PVector> hole : holes.entrySet()) {
       String ref = hole.getKey();
-      
-      println("ref: " + ref);
 
       if (eyes.containsKey(ref)) {
         PVector pos = hole.getValue();
@@ -130,12 +133,19 @@ class Potato {
         arm.setPosition(pos);
         arm.draw(0);
       }
+      
+      if (accessories.containsKey(ref)) {
+        PVector pos = hole.getValue();
+        Accessory accessory = accessories.get(ref);
+        accessory.setPosition(pos);
+        accessory.draw();
+      }
     }
   }
   
   private void setHoles() {
     holes.put("feet", new PVector(pos.x, pos.y + size.y * .65));
-    holes.put("mouth", new PVector(pos.x, pos.y * 1.1));
+    holes.put("mouth", new PVector(pos.x, pos.y * 1.15));
 
     holes.put("left eye", new PVector(pos.x - size.x / 6, pos.y - size.y / 6));
     holes.put("right eye", new PVector(pos.x + size.x / 6, pos.y - size.y / 6));

@@ -15,7 +15,6 @@ class Teeth {
   }
   
   void draw() {
-    println("teeth");
     pushMatrix();
     translate(pos.x, pos.y);
     noStroke();
