@@ -91,54 +91,55 @@ class Potato {
   private void attatchToHoles() {
     for (Map.Entry<String, PVector> hole : holes.entrySet()) {
       String ref = hole.getKey();
+      float rotate = ref == "head" || ref == "feet" ? radians(90) : 0.;
 
       if (eyes.containsKey(ref)) {
         PVector pos = hole.getValue();
         Eye eye = eyes.get(ref);
         eye.setPosition(pos);
-        eye.draw();
+        eye.draw(rotate);
       }
       
       if (teeths.containsKey(ref)) {
         PVector pos = hole.getValue();
         Teeth teeth = teeths.get(ref);
         teeth.setPosition(pos);
-        teeth.draw();
+        teeth.draw(rotate);
       }
       
       if (noses.containsKey(ref)) {
         PVector pos = hole.getValue();
         Nose nose = noses.get(ref);
         nose.setPosition(pos);
-        nose.draw();
+        nose.draw(rotate);
       }
       
       if (hats.containsKey(ref)) {
         PVector pos = hole.getValue();
         Hat hat = hats.get(ref);
         hat.setPosition(pos);
-        hat.draw();
+        hat.draw(rotate);
       }
       
       if (feets.containsKey(ref)) {
         PVector pos = hole.getValue();
         Feet feet = feets.get(ref);
         feet.setPosition(pos);
-        feet.draw();
+        feet.draw(rotate);
       }
       
       if (arms.containsKey(ref)) {
         PVector pos = hole.getValue();
         Arm arm = arms.get(ref);
         arm.setPosition(pos);
-        arm.draw(0);
+        arm.draw(rotate);
       }
       
       if (accessories.containsKey(ref)) {
         PVector pos = hole.getValue();
         Accessory accessory = accessories.get(ref);
         accessory.setPosition(pos);
-        accessory.draw();
+        accessory.draw(rotate);
       }
     }
   }

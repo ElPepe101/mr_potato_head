@@ -14,10 +14,15 @@ class Nose {
     pos = _pos;
   }
   
-  void draw() {
+  void draw(float deg) {
+    pushMatrix();
+    translate(pos.x, pos.y);
+    rotate(deg);
+
     fill(160, 94, 27);
-    ellipse(pos.x, pos.y + 3, size.x, size.y * 1.1);
-    ellipse(pos.x - size.x / 3, pos.y + size.y / 4, size.x * .9, size.y * .7);
-    ellipse(pos.x + size.x / 3, pos.y + size.y / 4, size.x * .9, size.y * .7);
+    ellipse(0, 3, size.x, size.y * 1.1);
+    ellipse(- size.x / 3, size.y / 4, size.x * .9, size.y * .7);
+    ellipse(size.x / 3, size.y / 4, size.x * .9, size.y * .7);
+    popMatrix();
   }
 }

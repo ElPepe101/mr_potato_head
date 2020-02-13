@@ -14,9 +14,15 @@ class Hat {
     pos = _pos;
   }
 
-  void draw() {
+  void draw(float deg) {
+    pushMatrix();
+    translate(pos.x, pos.y);
+    rotate(radians(-90));
+    rotate(deg);
+
     fill(40);
-    arc(pos.x, pos.y, size.x * .65, size.y * 1.5, radians(-180), radians(0));
-    rect(pos.x - size.x / 2, pos.y, size.x, size.y * .4, size.x * .1);
+    arc(0, 0, size.x * .65, size.y * 1.5, radians(-180), radians(0));
+    rect(-size.x / 2, 0, size.x, size.y * .4, size.x * .1);
+    popMatrix();
   }
 }

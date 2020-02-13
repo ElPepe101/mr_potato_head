@@ -38,16 +38,20 @@ class Eye {
     pos = _pos;
   }
   
-  void draw() {
+  void draw(float deg) {
     angle = atan2(mouseY - pos.y, mouseX - pos.x);
     pushMatrix();
+    translate(pos.x, pos.y);
+    rotate(deg);
+
     noStroke();
     fill(sclera);
-    ellipse(pos.x, pos.y, size.x, size.y);
-    translate(pos.x, pos.y);
+    ellipse(0, 0, size.x, size.y);
+
     rotate(angle);
     fill(retina);
     ellipse(size.x / 4, 0, size.x / 4, size.y / 4);
+
     fill(pupil);
     ellipse(size.x / 4, 0, size.x / 6, size.y / 6);
     popMatrix();

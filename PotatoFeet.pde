@@ -17,14 +17,20 @@ class Feet {
     pos = _pos;
   }
 
-  void draw() {    
+  void draw(float deg) {    
     if (prev.dist(pos) > 0) {
       prev = pos;
       up = !up;
     }
 
+    pushMatrix();
+    translate(pos.x, pos.y);
+    rotate(radians(-90));
+    rotate(deg);
+
     fill(76, 149, 254);
-    arc(pos.x + size.x / 2, pos.y + size.y / (up ? 3 : 4), size.x, size.y, radians(-180), radians(0));
-    arc(pos.x - size.x / 2, pos.y + size.y / (up ? 4 : 3), size.x, size.y, radians(-180), radians(0));
+    arc(size.x / 2, size.y / (up ? 3 : 4), size.x, size.y, radians(-180), radians(0));
+    arc(- size.x / 2, size.y / (up ? 4 : 3), size.x, size.y, radians(-180), radians(0));
+    popMatrix();
   }
 }

@@ -10,9 +10,10 @@ class Accessory {
     pos = _pos;
   }
 
-  void draw() {
+  void draw(float deg) {
     pushMatrix();
     translate(pos.x, pos.y);
+    rotate(deg);
     // aquí va tu código
     
     

@@ -19,10 +19,11 @@ class Arm {
     pos = _pos;
   }
 
-  void draw(int deg) {
+  void draw(float deg) {
     pushMatrix();
     translate(pos.x, pos.y);
-    rotate(radians(deg));
+    rotate(deg);
+
     stroke(220);
     strokeWeight(16);
     line(start.x, start.y, end.x, end.y);

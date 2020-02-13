@@ -14,9 +14,10 @@ class Teeth {
     pos = _pos;
   }
   
-  void draw() {
+  void draw(float deg) {
     pushMatrix();
     translate(pos.x, pos.y);
+    rotate(deg);
     noStroke();
 
     fill(0);
