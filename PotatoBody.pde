@@ -64,13 +64,14 @@ class Potato {
   
   void draw() {
     pushMatrix();
+    translate(pos.x, pos.y);
     noStroke();
     fill(200, 134, 67);
-    ellipse(pos.x, pos.y, size.x, size.y);
-    ellipse(pos.x, pos.y + (size.y / 4), size.x * 1.15, size.x * 1.3);
+    ellipse(0, 0, size.x, size.y);
+    ellipse(0, size.y / 4, size.x * 1.15, size.x * 1.3);
     fill(205, 139, 72);
     rotate(radians(20));
-    arc(pos.x + size.x * .9, pos.y * .97, size.x * .3, size.y * .6, radians(-90), radians(120));
+    arc(size.x / 2 - 10, size.y / 4 + 10, size.x * .3, size.y * .6, radians(-90), radians(120));
     popMatrix();
 
     attatchToHoles();
